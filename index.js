@@ -114,6 +114,7 @@ class Index {
     }
 
     restart() {
+        this.stop()
         this.clear()
         this.firstStart()
     }
@@ -178,6 +179,9 @@ class StateHolder {
                 return item.y > it
             })
             transferMap['down'](data)
+            for (let i = 0; i < arr.length; i++) {
+                arr[i] = arr[i] - 1
+            }
         }
         this.score += arr.length
     }
