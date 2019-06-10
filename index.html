@@ -8,14 +8,35 @@
 <body>
 <div id="area1"></div>
 <div id="area2" style="margin-top: 10px;"></div>
-<button onclick="doClick()">dinawo</button>
+<div id="area3" style="margin-top: 10px;"></div>
+
+<button id="toggle" onclick="doClick()">暂停</button>
+<button onclick="doClick1()">重新开始</button>
 
 <script type="application/javascript">
     let index = new Index()
-    index.start()
+    index.firstStart()
+
+    index.stateHolder.addDeathListener(() => {
+        let toggle = document.getElementById('toggle')
+        toggle.style.display = 'none'
+    })
 
     function doClick() {
-        index.randomState2()
+        index.toggle()
+        let toggle = document.getElementById('toggle')
+        console.log(index.stopTag)
+        if (index.stopTag) {
+            toggle.innerText = '暂停'
+        } else {
+            toggle.innerText = '继续'
+        }
+    }
+
+    function doClick1() {
+        index.restart()
+        let toggle = document.getElementById('toggle')
+        toggle.style.display = 'inline-block'
     }
 
 </script>
